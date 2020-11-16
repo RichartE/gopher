@@ -1,0 +1,4 @@
+0About Sports	Sports/about_sports.txt	localhost	50000
+0Why Sports	Sports/why_sports.txt	localhost	50000
+1Basketball	Sports/Basketball/	localhost	50000
+1Ice Skating	Sports/Ice_Skating/	localhost	50000
