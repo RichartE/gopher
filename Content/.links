@@ -1,4 +1,4 @@
-0About this server  about_server.txt   localhost       50000
-0Sports and Music     sports_and_music.txt        localhost       50000
-1Music     Music/     localhost       50000
-1Sports    Sports/        localhost       50000
+0About this server	about_server.txt	localhost	50000
+0Sports and Music	sports_and_music.txt	localhost	50000
+1Music	Music/	localhost	50000
+1Sports	Sports/	localhost	50000
