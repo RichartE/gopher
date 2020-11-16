@@ -16,12 +16,12 @@ class GopherClient:
         #self.port = input("What port are we connecting to?\n")
         self.server = "localhost"
         self.port = 50000
+        sys.stdout.write(u"\u001b[2J")
+        sys.stdout.write(u"\u001b[1000D")
         answer = self.request(self.server, self.port, "")
-        print('Answer: ' + str(answer))
-        self.options.append(Line(1, 'back', '', self.server, self.port))
+        self.options.append(Line(1, "back", "", self.server, self.port))
         self.process(answer)
         move = self.display()
-        print("Move: " + str(move))
         self.main(move)
     
     def display(self):
@@ -64,6 +64,8 @@ class GopherClient:
         moveTo = self.options[move]
         if moveTo.type == 0:
             answer = self.request(moveTo.server, moveTo.port, moveTo.x)
+            sys.stdout.write(u"\u001b[1000D")
+            print(answer)
             self.options = self.options[0:1]
         else:
             answer = self.request(moveTo.server, moveTo.port, "")
@@ -90,14 +92,9 @@ class GopherClient:
 
         serverSock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
         serverSock.connect((server, port))
-        print ("Connected to server; sending message")
-
         serverSock.send(message.encode("ascii"))
-        print ("Sent message; waiting for reply")
 
         returned = serverSock.recv(1024)
-        print ("Received reply: "+ returned.decode("ascii"))
-
         serverSock.close()
         
         return returned.decode("ascii")
@@ -114,11 +111,8 @@ class GopherClient:
             port = 0
             if line.startswith("1"):
                 type = 1
-            print("Line: " + str(line))
             filename = re.split("\s{2,}", line)
-            print("Filename:" + str(filename))
             title = filename[0][1:]
-            print("Title:" + str(title))
             x = filename[1]
             server = filename[2]
             port = int(filename[3])
